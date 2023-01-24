@@ -1,0 +1,14 @@
+:root {
+  --light-blue: #d6e6ff;
+  --dark-blue: #002772;
+  --light-red: #fde2ff;
+  --dark-red: #720060;
+  --light-gray: #dcdcdc;
+  --dark-gray: #3f3f3f;
+  --black: #1e1e1e;
+  --white: #ffffff;
+}
+
+.wrapper {
+  background-color: tomato;
+}
