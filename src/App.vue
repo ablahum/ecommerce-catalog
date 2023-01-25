@@ -1,19 +1,30 @@
 <template>
-  <div>
+  <div class="container">
     <ProductItem />
 
-    <UnavailableProduct />
+    <!-- <UnavailableProduct /> -->
   </div>
 </template>
 
 <script>
-import { ProductItem, UnavailableProduct } from './components';
+import { ProductItem } from './components';
+// import { ProductItem, UnavailableProduct } from './components';
 
 export default {
   name: 'App',
   components: {
     ProductItem,
-    UnavailableProduct,
+    // UnavailableProduct,
   },
 };
 </script>
+
+<style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--light-red);
+}
+</style>
