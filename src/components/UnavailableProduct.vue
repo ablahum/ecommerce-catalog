@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>unavailable product</h1>
+    <h1>This product is unavailable to show</h1>
   </div>
 </template>
 

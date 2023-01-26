@@ -1,30 +1,35 @@
 <template>
   <div class="wrapper">
     <div class="product__img">
+      <!-- <img
+        src="../../../product.png"
+        alt="product image"
+      /> -->
       <img
-        :src="product.image"
+        :src="product[0].image"
         alt="product image"
       />
     </div>
 
     <div class="product__content">
-      <h1 class="product__title">{{ product.title }}</h1>
+      <h1 class="product__title">{{ product[0].title }}</h1>
 
       <div class="product__spec">
-        <p class="product__category">{{ product.category }}</p>
+        <p class="product__category">{{ product[0].category }}</p>
 
-        <ItemRating :rate="product.rating.rate" />
+        <!-- <ItemRating :rate="product[0].rating.rate" /> -->
+        <ItemRating rate="2" />
       </div>
 
       <hr />
 
       <p class="product__desc">
-        {{ product.description }}
+        {{ product[0].description }}
       </p>
 
       <hr />
 
-      <p class="product__price">${{ product.price }}</p>
+      <p class="product__price">${{ product[0].price }}</p>
 
       <div class="buttons">
         <button
@@ -50,41 +55,54 @@ import ItemRating from './ItemRating.vue';
 
 export default {
   name: 'ProductItem',
+
   components: {
     ItemRating,
   },
+
   props: {
-    type: String,
+    product: Object,
+    asd: Function,
+    nextProduct: Function,
   },
 
-  methods: {
-    asd() {
-      console.log(this.product.category);
-    },
-    getProduct() {
-      fetch(`https://fakestoreapi.com/products/${this.number}`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.product = data;
-        })
-        .catch((err) => console.log(err));
-    },
-    nextProduct() {
-      this.number++;
-      this.getProduct();
-    },
-  },
+  // data() {
+  //   return {
+  //     product: [],
+  //     number: 1,
+  //     loading: true,
+  //   };
+  // },
 
-  data() {
-    return {
-      product: [],
-      number: 1,
-    };
-  },
+  // methods: {
+  //   getProduct() {
+  //     fetch(`https://fakestoreapi.com/products/${this.number}`)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.category === "men's clothing" || data.category === "women's clothing") {
+  //           this.product = data;
+  //         } else {
+  //           this.product = [];
+  //         }
+  //         this.loading = false;
+  //       })
+  //       .catch((err) => console.log(err));
+  //   },
 
-  mounted() {
-    this.getProduct();
-  },
+  //   nextProduct() {
+  //     if (this.number === 20) {
+  //       this.number = 1;
+  //     } else {
+  //       this.number++;
+  //     }
+  //     this.loading = true;
+  //     this.getProduct();
+  //   },
+  // },
+
+  // mounted() {
+  // this.getProduct();
+  // },
 };
 </script>
 
@@ -92,14 +110,15 @@ export default {
 .wrapper {
   display: flex;
   padding: 50px;
-  max-width: 1034px;
+  max-width: 1000px;
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .product__img {
-  margin-right: 67.68px;
+  margin-right: 50px;
+  width: 40%;
 }
 
 .product__img img {
@@ -107,38 +126,32 @@ export default {
 }
 
 .product__title {
-  margin-bottom: 25px;
   font-weight: 600;
   color: var(--dark-red);
-  font-size: 28px;
 }
 
-.product__title-men {
-  color: var(--dark-blue);
-  margin-bottom: 25px;
-  font-weight: 600;
-  font-size: 28px;
+.product__content {
+  width: 60%;
 }
 
 .product__spec {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 11px;
+  margin: 1rem 0 0.5rem;
 }
 
 .product__desc {
-  margin: 26px 0 62.5px;
-  font-size: 20px;
+  margin: 1rem 0 2rem;
+  font-size: var(--secondary);
   font-weight: 400;
   color: var(--black);
 }
 
 .product__price {
   color: var(--dark-red);
-  font-size: 28px;
   font-weight: 600;
-  margin: 15px 0;
+  margin: 0.5em 0;
 }
 
 .buttons {
@@ -148,16 +161,16 @@ export default {
 
 .btn {
   width: 50%;
-  padding: 9px;
+  padding: 0.5em;
   border: none;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: var(--secondary);
   cursor: pointer;
 }
 
 .btn-buy {
-  margin-right: 19px;
+  margin-right: 1em;
   background-color: var(--dark-red);
   color: var(--white);
 }

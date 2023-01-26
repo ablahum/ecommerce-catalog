@@ -9,6 +9,9 @@
   --dark-gray: #3f3f3f;
   --black: #1e1e1e;
   --white: #ffffff;
+
+  --primary: 28px;
+  --secondary: 20px;
 }
 
 *,
@@ -19,4 +22,5 @@ body {
   box-sizing: border-box;
 
   font-family: 'Inter', sans-serif;
+  font-size: var(--primary);
 }

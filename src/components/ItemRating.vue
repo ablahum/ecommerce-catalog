@@ -20,7 +20,7 @@
 export default {
   name: 'ItemRating',
   props: {
-    rate: Number,
+    rate: String,
   },
 };
 </script>
