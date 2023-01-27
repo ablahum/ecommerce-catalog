@@ -1,12 +1,17 @@
 <template>
-  <div class="container type-men">
+  <div class="container">
+    <div
+      class="bg"
+      :class="{ men: isMen, women: isWomen, unavailable: isUnavailable }"
+    ></div>
     <SkeletonItem v-if="loading" />
 
     <ProductItem
       :product="product"
       :loading="loading"
-      :asd="asd"
       :nextProduct="nextProduct"
+      :isMen="isMen"
+      :isWomen="isWomen"
       v-else-if="product"
     />
 
@@ -31,10 +36,12 @@ export default {
 
   data() {
     return {
-      product: null,
-      category: null,
-      number: 1,
       loading: true,
+      product: null,
+      number: 1,
+      isMen: false,
+      isWomen: false,
+      isUnavailable: true,
     };
   },
 
@@ -50,29 +57,28 @@ export default {
           // filter only men's or women's clothing
           if (data.category === "men's clothing" || data.category === "women's clothing") {
             // get the exact category
-            if (data.category === "men's clothing") {
-              this.category = data.category;
-            } else if (data.category === "women's clothing") {
-              this.category = data.category;
+            switch (data.category) {
+              case "men's clothing":
+                this.isMen = true;
+                this.isWomen = false;
+                break;
+              case "women's clothing":
+                this.isWomen = true;
+                this.isMen = false;
+                break;
             }
 
             this.product = data;
           } else {
             // no category
             this.product = null;
-            this.category = null;
+            this.isMen = false;
+            this.isWomen = false;
           }
 
           this.loading = false;
         })
         .catch((err) => console.log(err));
-    },
-
-    asd() {
-      console.log('product =>', this.product);
-
-      console.log('number =>', this.number);
-      console.log('category =>', this.category);
     },
 
     nextProduct() {
@@ -98,24 +104,29 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  background-color: var(--white);
+  position: relative;
   height: 100vh;
 }
 
-.type-default {
+.bg {
+  width: 100%;
+  height: 70%;
+}
+
+.men {
+  background-color: var(--light-blue) !important;
+  background-image: url('./assets/pattern.svg');
+}
+
+.women {
+  background-color: var(--light-red) !important;
+  background-image: url('./assets/pattern.svg');
+}
+
+.unavailable {
   background-color: var(--light-gray);
-}
-
-.type-men {
-  background-color: var(--light-blue);
-  background-image: url('./assets/pattern.svg');
-  height: 60vh;
-}
-
-.type-women {
-  background-color: var(--light-red);
-  background-image: url('./assets/pattern.svg');
-  height: 60vh;
 }
 </style>

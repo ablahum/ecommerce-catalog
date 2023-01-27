@@ -1,17 +1,32 @@
 <template>
-  <div class="ratings">
+  <div class="rating">
     <p class="rate__number">{{ rate }}</p>
 
     <div class="rate__graph">
-      <div class="rate men"></div>
+      <div
+        class="rate-fill"
+        :class="{ men: isMen, women: isWomen }"
+      ></div>
 
-      <div class="rate men"></div>
+      <div
+        class="rate-fill"
+        :class="{ men: isMen, women: isWomen }"
+      ></div>
 
-      <div class="rate men"></div>
+      <div
+        class="rate-fill"
+        :class="{ men: isMen, women: isWomen }"
+      ></div>
 
-      <div class="rate men"></div>
+      <div
+        class="rate-fill"
+        :class="{ men: isMen, women: isWomen }"
+      ></div>
 
-      <div class="rate men"></div>
+      <div
+        class="rate-fill"
+        :class="{ men: isMen, women: isWomen }"
+      ></div>
     </div>
   </div>
 </template>
@@ -19,16 +34,27 @@
 <script>
 export default {
   name: 'ItemRating',
+
   props: {
-    rate: String,
+    rate: Number,
+    isMen: Boolean,
+    isWomen: Boolean,
   },
 };
 </script>
 
 <style scoped>
-.ratings {
+.rating {
   display: flex;
   align-items: center;
+}
+
+.men {
+  background-color: var(--dark-blue);
+}
+
+.women {
+  background-color: var(--dark-red);
 }
 
 /* stars-inner::before {
@@ -47,13 +73,10 @@ yg gituan + combine js cocok */
   display: flex;
 }
 
-.rate {
+.rate-fill {
   width: 18px;
   height: 18px;
   border-radius: 100%;
   margin-right: 0.1rem;
-}
-.men {
-  background-color: var(--dark-blue);
 }
 </style>

@@ -25,24 +25,23 @@ export default {
 .wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 50px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: var(--white);
-
+  position: absolute;
+  top: 25%;
   width: 1000px;
-  height: 600px;
-  background-image: url('../assets/sad.svg');
-  /* position: absolute;
-  top: 50;
-  left: 50; */
+  height: 500px;
+  background: #fff url('../assets/sad-face.png') no-repeat center center;
 }
 
 h1 {
   font-size: var(--secondary);
   font-weight: 400;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.6em;
 }
 
 .btn {

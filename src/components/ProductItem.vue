@@ -8,13 +8,21 @@
     </div>
 
     <div>
-      <h1 class="product__title men">{{ product.title }}</h1>
+      <h1
+        class="product__title"
+        :class="{ men: isMen, women: isWomen }"
+      >
+        {{ product.title }}
+      </h1>
 
       <div class="product__spec">
         <p class="product__category">{{ product.category }}</p>
 
-        <!-- <ItemRating :rate="product.rating.rate" /> -->
-        <ItemRating rate="2" />
+        <ItemRating
+          :rate="product.rating.rate"
+          :isMen="isMen"
+          :isWomen="isWomen"
+        />
       </div>
 
       <hr />
@@ -25,18 +33,24 @@
 
       <hr />
 
-      <p class="product__price men">${{ product.price }}</p>
+      <p
+        class="product__price"
+        :class="{ men: isMen, women: isWomen }"
+      >
+        ${{ product.price }}
+      </p>
 
       <div class="buttons">
         <button
           class="btn btn-buy"
-          @click="asd"
+          :class="{ 'btn-men': isMen, 'btn-women': isWomen }"
         >
           Buy now
         </button>
 
         <button
-          class="btn btn-next men"
+          class="btn btn-next"
+          :class="{ men: isMen, women: isWomen }"
           @click="nextProduct"
         >
           Next product
@@ -58,8 +72,9 @@ export default {
 
   props: {
     product: Object,
-    asd: Function,
     nextProduct: Function,
+    isMen: Boolean,
+    isWomen: Boolean,
   },
 };
 </script>
@@ -72,6 +87,16 @@ export default {
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 25%;
+}
+
+.men {
+  color: var(--dark-blue);
+}
+
+.women {
+  color: var(--dark-red);
 }
 
 .product__img {
@@ -126,23 +151,20 @@ export default {
 
 .btn-buy {
   margin-right: 1em;
-  /* background-color: var(--dark-red); */
-  /* color: var(--white); */
-}
-
-.men {
-  color: var(--dark-blue);
-  border-color: var(--dark-blue);
-}
-
-.women {
-  color: var(--dark-red);
-  border-color: var(--dark-red);
+  color: var(--white);
 }
 
 .btn-next {
   background-color: var(--white);
   border: 2px solid;
+}
+
+.btn-men {
+  background-color: var(--dark-blue);
+}
+
+.btn-women {
+  background-color: var(--dark-red);
 }
 
 @media screen and (max-width: 576px) {
