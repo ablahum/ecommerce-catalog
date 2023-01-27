@@ -1,35 +1,31 @@
 <template>
   <div class="wrapper">
     <div class="product__img">
-      <!-- <img
-        src="../../../product.png"
-        alt="product image"
-      /> -->
       <img
-        :src="product[0].image"
+        :src="product.image"
         alt="product image"
       />
     </div>
 
-    <div class="product__content">
-      <h1 class="product__title">{{ product[0].title }}</h1>
+    <div>
+      <h1 class="product__title men">{{ product.title }}</h1>
 
       <div class="product__spec">
-        <p class="product__category">{{ product[0].category }}</p>
+        <p class="product__category">{{ product.category }}</p>
 
-        <!-- <ItemRating :rate="product[0].rating.rate" /> -->
+        <!-- <ItemRating :rate="product.rating.rate" /> -->
         <ItemRating rate="2" />
       </div>
 
       <hr />
 
       <p class="product__desc">
-        {{ product[0].description }}
+        {{ product.description }}
       </p>
 
       <hr />
 
-      <p class="product__price">${{ product[0].price }}</p>
+      <p class="product__price men">${{ product.price }}</p>
 
       <div class="buttons">
         <button
@@ -40,7 +36,7 @@
         </button>
 
         <button
-          class="btn btn-next"
+          class="btn btn-next men"
           @click="nextProduct"
         >
           Next product
@@ -65,48 +61,10 @@ export default {
     asd: Function,
     nextProduct: Function,
   },
-
-  // data() {
-  //   return {
-  //     product: [],
-  //     number: 1,
-  //     loading: true,
-  //   };
-  // },
-
-  // methods: {
-  //   getProduct() {
-  //     fetch(`https://fakestoreapi.com/products/${this.number}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         if (data.category === "men's clothing" || data.category === "women's clothing") {
-  //           this.product = data;
-  //         } else {
-  //           this.product = [];
-  //         }
-  //         this.loading = false;
-  //       })
-  //       .catch((err) => console.log(err));
-  //   },
-
-  //   nextProduct() {
-  //     if (this.number === 20) {
-  //       this.number = 1;
-  //     } else {
-  //       this.number++;
-  //     }
-  //     this.loading = true;
-  //     this.getProduct();
-  //   },
-  // },
-
-  // mounted() {
-  // this.getProduct();
-  // },
 };
 </script>
 
-<style>
+<style scoped>
 .wrapper {
   display: flex;
   padding: 50px;
@@ -118,7 +76,6 @@ export default {
 
 .product__img {
   margin-right: 50px;
-  width: 40%;
 }
 
 .product__img img {
@@ -127,11 +84,6 @@ export default {
 
 .product__title {
   font-weight: 600;
-  color: var(--dark-red);
-}
-
-.product__content {
-  width: 60%;
 }
 
 .product__spec {
@@ -139,6 +91,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0 0.5rem;
+}
+
+.product__category {
+  font-size: 0.7rem;
 }
 
 .product__desc {
@@ -149,7 +105,6 @@ export default {
 }
 
 .product__price {
-  color: var(--dark-red);
   font-weight: 600;
   margin: 0.5em 0;
 }
@@ -171,13 +126,33 @@ export default {
 
 .btn-buy {
   margin-right: 1em;
-  background-color: var(--dark-red);
-  color: var(--white);
+  /* background-color: var(--dark-red); */
+  /* color: var(--white); */
+}
+
+.men {
+  color: var(--dark-blue);
+  border-color: var(--dark-blue);
+}
+
+.women {
+  color: var(--dark-red);
+  border-color: var(--dark-red);
 }
 
 .btn-next {
   background-color: var(--white);
-  border: 2px solid var(--dark-red);
-  color: var(--dark-red);
+  border: 2px solid;
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product__img {
+    margin: 0 0 50px 0;
+  }
 }
 </style>

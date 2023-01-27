@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container type-men">
     <SkeletonItem v-if="loading" />
 
     <ProductItem
@@ -7,10 +7,13 @@
       :loading="loading"
       :asd="asd"
       :nextProduct="nextProduct"
-      v-else-if="product.length > 0"
+      v-else-if="product"
     />
 
-    <UnavailableProduct v-else />
+    <UnavailableProduct
+      v-else
+      :nextProduct="nextProduct"
+    />
   </div>
 </template>
 
@@ -28,7 +31,7 @@ export default {
 
   data() {
     return {
-      product: [],
+      product: null,
       category: null,
       number: 1,
       loading: true,
@@ -41,71 +44,47 @@ export default {
     },
 
     getProduct() {
-      // fetch(`https://fakestoreapi.com/products/${this.number}`)
-      // fetch(url(this.number))
-      //   .then((res) => res.json())
-      //   .then((data) => {
-      //     // filter only men's or women's clothing
-      //     if (data.category === "men's clothing" || data.category === "women's clothing") {
-      //       // get the exact category
-      //       if (data.category === "men's clothing") {
-      //         this.category === data.category;
-      //       } else if (data.category === "women's clothing") {
-      //         this.category === data.category;
-      //       }
+      fetch(this.url(this.number))
+        .then((res) => res.json())
+        .then((data) => {
+          // filter only men's or women's clothing
+          if (data.category === "men's clothing" || data.category === "women's clothing") {
+            // get the exact category
+            if (data.category === "men's clothing") {
+              this.category = data.category;
+            } else if (data.category === "women's clothing") {
+              this.category = data.category;
+            }
 
-      //       this.product.push(data);
-      //     } else {
-      //       // no category
-      //       this.product = [];
-      //     }
-
-      //     this.loading = false;
-      //   })
-      //   .catch((err) => console.log(err));
-
-      const imgUrl = '../../product.png';
-
-      const data = {
-        title: 'ini judul',
-        category: "men's clothing",
-        image: imgUrl,
-        description: 'ini deskripsi fowfowhg owhgow ghowrhgo gohwgohwogwrwo gorwgorwgndog owjgo jfewjf ojwjgp mvrelj waaa!!!!',
-        price: 20,
-      };
-
-      setTimeout(() => {
-        if (data.category === "men's clothing" || data.category === "women's clothing") {
-          // get the exact category
-          if (data.category === "men's clothing") {
-            this.category === data.category;
-          } else if (data.category === "women's clothing") {
-            this.category === data.category;
+            this.product = data;
+          } else {
+            // no category
+            this.product = null;
+            this.category = null;
           }
 
-          this.product.push(data);
-        } else {
-          // no category
-          this.product = [];
-        }
-
-        this.loading = false;
-      }, 2000);
+          this.loading = false;
+        })
+        .catch((err) => console.log(err));
     },
 
     asd() {
-      console.log(this.number);
+      console.log('product =>', this.product);
+
+      console.log('number =>', this.number);
+      console.log('category =>', this.category);
     },
 
     nextProduct() {
+      this.loading = true;
+
       // product number return to 1
-      if (this.number > 20) {
+      if (this.number >= 20) {
         this.number = 1;
       } else {
         this.number++;
       }
 
-      this.loading = true;
       this.getProduct();
     },
   },
@@ -116,12 +95,27 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.type-default {
+  background-color: var(--light-gray);
+}
+
+.type-men {
+  background-color: var(--light-blue);
+  background-image: url('./assets/pattern.svg');
+  height: 60vh;
+}
+
+.type-women {
   background-color: var(--light-red);
+  background-image: url('./assets/pattern.svg');
+  height: 60vh;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="skeleton">
+  <div class="wrapper">
     <div class="skeleton__img"></div>
 
     <div class="skeleton__content">
@@ -40,8 +40,8 @@ export default {
 };
 </script>
 
-<style>
-.skeleton {
+<style scoped>
+.wrapper {
   display: flex;
   padding: 50px;
   max-width: 1000px;
@@ -68,14 +68,13 @@ export default {
 .skeleton__title {
   width: 300px;
   height: 24px;
-  margin-bottom: 25px;
   animation: pulse 2s infinite ease-in-out;
 }
 
 .skeleton__spec {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 11px;
+  margin: 1rem 0 0.5rem;
 }
 
 .skeleton__spec span {
@@ -85,7 +84,7 @@ export default {
 }
 
 .skeleton__desc {
-  margin: 26px 0 62.5px;
+  margin: 1rem 0 2rem;
 }
 
 .skeleton__desc span:nth-child(odd) {
@@ -116,7 +115,7 @@ export default {
 }
 
 .skeleton__btn:nth-child(1) {
-  margin-right: 19px;
+  margin-right: 1em;
 }
 
 @keyframes pulse {
@@ -130,6 +129,20 @@ export default {
 
   100% {
     background-color: #94a3b8;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .skeleton__img {
+    width: 100%;
+  }
+
+  .skeleton__content {
+    width: 100%;
+  }
+
+  .skeleton__title {
+    margin-top: 25px;
   }
 }
 </style>

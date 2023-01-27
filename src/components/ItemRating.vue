@@ -3,15 +3,15 @@
     <p class="rate__number">{{ rate }}</p>
 
     <div class="rate__graph">
-      <div class="rate"></div>
+      <div class="rate men"></div>
 
-      <div class="rate"></div>
+      <div class="rate men"></div>
 
-      <div class="rate"></div>
+      <div class="rate men"></div>
 
-      <div class="rate"></div>
+      <div class="rate men"></div>
 
-      <div class="rate"></div>
+      <div class="rate men"></div>
     </div>
   </div>
 </template>
@@ -25,13 +25,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .ratings {
   display: flex;
-}
-
-.rate__number {
-  margin-right: 5px;
+  align-items: center;
 }
 
 /* stars-inner::before {
@@ -41,6 +38,11 @@ export default {
 
 yg gituan + combine js cocok */
 
+.rate__number {
+  margin-right: 0.2rem;
+  font-size: 0.7rem;
+}
+
 .rate__graph {
   display: flex;
 }
@@ -48,8 +50,10 @@ yg gituan + combine js cocok */
 .rate {
   width: 18px;
   height: 18px;
-  background-color: var(--dark-red);
   border-radius: 100%;
-  margin-right: 2px;
+  margin-right: 0.1rem;
+}
+.men {
+  background-color: var(--dark-blue);
 }
 </style>
