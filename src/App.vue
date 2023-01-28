@@ -38,7 +38,7 @@ export default {
     return {
       loading: true,
       product: null,
-      number: 20,
+      number: 5,
       isMen: false,
       isWomen: false,
       isUnavailable: true,
@@ -84,7 +84,6 @@ export default {
     nextProduct() {
       this.loading = true;
 
-      // product number return to 1
       if (this.number >= 20) {
         this.number = 1;
       } else {

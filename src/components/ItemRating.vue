@@ -2,13 +2,10 @@
   <div class="rating">
     <p class="rate__number">{{ rate }}</p>
 
-    <div
-      class="rate__graph"
-      @click="getRatingGraph"
-    >
+    <div class="rate__graph">
       <span
         class="rate"
-        :class="{ 'rate-men': isMen, 'rate-women': isWomen }"
+        :class="{ 'rate-unfilled-men': isMen, 'rate-unfilled-women': isWomen }"
         v-for="v in maxValue"
         :key="v"
       >
@@ -16,18 +13,18 @@
 
       <div
         class="filled-rates"
-        :style="{ width: getRatingGraph + '%' }"
+        :style="{ width: value + '%' }"
       >
-        <!-- <div class="asd"> -->
-        <span
-          class="rate rate-filled rate-filled-women"
-          :class="{ 'rate-men': isMen, 'rate-women': isWomen }"
-          v-for="v in maxValue"
-          :key="v"
-        >
-        </span>
+        <div>
+          <span
+            class="rate"
+            :class="{ 'rate-filled-men': isMen, 'rate-unfilled-men': isMen, 'rate-filled-women': isWomen, 'rate-unfilled-women': isWomen }"
+            v-for="v in maxValue"
+            :key="v"
+          >
+          </span>
+        </div>
       </div>
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -44,24 +41,19 @@ export default {
 
   data() {
     return {
+      value: '0',
       maxValue: 5,
     };
   },
 
   methods: {
-    checkFilledType() {
-      // check filled men
-      // check filled women
-      // if (&& isWomen) {
-      //   return true
-      // } else if (&& isWomen) {
-      //   return false
-      // }
-    },
-
     getRatingGraph() {
-      return (this.rate / this.maxValue) * 100;
+      this.value = (this.rate / this.maxValue) * 100;
     },
+  },
+
+  mounted() {
+    this.getRatingGraph();
   },
 };
 </script>
@@ -89,8 +81,11 @@ export default {
   flex-wrap: wrap;
   position: absolute;
   top: 0;
+  overflow-x: hidden;
+}
 
-  width: 60%;
+.filled-rates div {
+  display: flex;
 }
 
 .rate {
@@ -98,23 +93,22 @@ export default {
   height: 18px;
   border-radius: 100%;
   margin-left: 0.1rem;
-
   border: 2px solid;
-}
-
-.rate-men {
-  border-color: var(--dark-blue);
 }
 
 .rate-filled-men {
   background-color: var(--dark-blue);
 }
 
-.rate-women {
-  border-color: var(--dark-red);
+.rate-unfilled-men {
+  border-color: var(--dark-blue);
 }
 
 .rate-filled-women {
   background-color: var(--dark-red);
+}
+
+.rate-unfilled-women {
+  border-color: var(--dark-red);
 }
 </style>

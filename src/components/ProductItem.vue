@@ -19,7 +19,7 @@
         <p class="product__category">{{ product.category }}</p>
 
         <ItemRating
-          :rate="2.5"
+          :rate="product.rating.rate"
           :isMen="isMen"
           :isWomen="isWomen"
         />
@@ -166,10 +166,11 @@ export default {
   background-color: var(--dark-red);
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 660px) {
   .wrapper {
     flex-direction: column;
     align-items: center;
+    margin-top: 0;
   }
 
   .product__img {

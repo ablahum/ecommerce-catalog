@@ -48,8 +48,7 @@ export default {
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  top: 25%;
+  margin-top: -400px;
 }
 
 .skeleton__img {
@@ -134,7 +133,11 @@ export default {
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 660px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
   .skeleton__img {
     width: 100%;
   }
