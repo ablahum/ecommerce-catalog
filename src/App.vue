@@ -38,7 +38,7 @@ export default {
     return {
       loading: true,
       product: null,
-      number: 1,
+      number: 20,
       isMen: false,
       isWomen: false,
       isUnavailable: true,
@@ -106,14 +106,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--white);
-  position: relative;
   height: 100vh;
 }
 
 .bg {
   width: 100%;
-  height: 70%;
+  height: 60vh;
 }
 
 .men {
